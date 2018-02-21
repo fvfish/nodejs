@@ -23,5 +23,19 @@
         var router = require('./controller/router.js')//先设置引用文件所在位置
         app.get('/', router.showIndex)//在相关操作中就可以调用这个函数了
 
+四、package.json的基本了解
+    {
+        "main": "router.js"
+    }//可以设置本目录下默认文件router.js，当你访问本目录就相当于直接访问该文件。
+
+五、ejs是一种在html中嵌入js的网页模板
+    1、安装ejs:npm install --save ejs
+    2、ejs是以ejs为扩展名的文件，比如:index.ejs;
+    3、在服务器js文件中要设置模板引擎
+        app.set('view engine', 'ejs');//设置模板引擎，默认会在views文件夹中调用ejs文件
+    4、app.use(function(req, res){res.render('err');})//调用时用res.render,后面跟着文件名，不用加扩展名就可调用。
+    5、ejs文件内js调用主要用<% XXXXXXX %>调用。
+    
+
 
     
