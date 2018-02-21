@@ -1,0 +1,27 @@
+一、开发步骤
+    1、创建相应的文件夹，完成整个工程的结构，mvc架构:
+    contorller,models,views,public,uploads,app.js
+    2、通过npm init完成基本工程配置文件package.json。
+    3、安装express:npm install --save express 安装ejs:npm install --save ejs
+
+二、app.js文件
+    1、服务器的主要文件，简单来说就是express。
+    2、内含大量中间件
+        app.use(express.static('public'));//use是通用，即可是get也可以是post，这里的static是静态目录。
+        app.use('/static', express.static('public'));//这么写是给目录加上一个路径。
+        app.get('/', router.showIndex)//首页，前面参数是访问路径，后面是处理函数。
+        app.use(function(req, res){res.render('err');})//这里是404出错处理页。
+
+三、js与js之间的相互调用。
+    1、被引js里，其中exports是提供的关键词，后面跟着函数名
+            exports.showIndex = function(req, res){
+            res.render('index', {
+                "albums":file.findAllDir()
+            });
+            }
+    2、引用js里，
+        var router = require('./controller/router.js')//先设置引用文件所在位置
+        app.get('/', router.showIndex)//在相关操作中就可以调用这个函数了
+
+
+    
