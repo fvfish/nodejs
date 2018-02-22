@@ -36,6 +36,18 @@
     4、app.use(function(req, res){res.render('err');})//调用时用res.render,后面跟着文件名，不用加扩展名就可调用。
     5、ejs文件内js调用主要用<% XXXXXXX %>调用。
     
+六、关于formidable，这是一个用于处理表单的npm工具。
+    1、var formidable = require('formidable');//安装后引有它
+    2、在html中应该有如下的表单，注意form里的属性，还有每一个表单项要有name属性。
+        '<form action="/upload" enctype="multipart/form-data" method="post">'+
+        '<input type="text" name="title"><br>'+
+        '<input type="file" name="upload" multiple="multiple"><br>'+
+        '<input type="submit" value="Upload">'+
+        '</form>'
+    3、js引用时
+        var form = new formidable.IncomingForm();
+        form.parse(req, function(err, fields, files) {
+        });
 
 
     
