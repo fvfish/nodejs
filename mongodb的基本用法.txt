@@ -1,5 +1,31 @@
-1、use 数据库名 就是使用数据库或新建数据库
-    use mydb
-2、db 查看当前数据库
-    db
-3、
+一、mongodb环境变量的设置
+    1.打开 应用程序 -> 实用工具 -> 终端； 
+    2.在终端中定位到自己用户的主目录，输入： cd ~ ； 
+    3.创建一个空文件，输入：touch .bash_profile ； 
+    4.编辑这个文件，输入：open .bash_profile ； 
+    5.在这个文件中输入：export PATH=${PATH}:<文件目录> ；（将"<文件目录>"替换成自己想要的目录）
+    例如：export PATH=${PATH}:/Users/skythinking/MongoDB/mongodb-osx-x86_64-2.6.1/bin; 
+    6，如果需要添加其他的环境变量例如JAVA_HOME，可以输入：export JAVA_HOME=/Library/Java/Home ； 
+    7，source .bash_profile重启终端，测试,这个时候就可以在用户主目录使用：mongod --dbpath /Users/skythinking/MongoDB/data/db 来启动数据库了，点击终端Commond+N打开一个新的终端，使用mongo命令来连接数据库，对数据库进行操作,比如：show dbs 显示所有的集合
+二、mongodb的使用：
+    1、show dbs 查看文件夹下所有数据库
+    2、use 数据库名 就是使用数据库或新建数据库
+        use mydb
+    3、db 查看当前数据库
+        db
+    4、db.集合名.insert 往集合（或新集合）中插入数据
+        db.student.insert({"name":"MY","age":12,"sex":"nan"})
+    5、show collections 列出当前集合
+        show collections
+    6、db.集合名.find() 查看集合内容
+        db.student.find()
+        db.student.find({"name":"MY"}) 
+        db.student.find({"score.数学":46})
+        db.student.find({"score.数学":46,"age":24 })  //两个条件的查询，且条件
+        db.student.find({"score.数学":{$gt:60}})      //查找数学成绩大于60分的人，小于是用$lt
+        db.student.find({$or:[{"age":34},{"age":24}]}); //或条件的查询
+
+    7、db.dropDatabase() 删除数据库
+        db.dropDatabase()
+    8、导入json文件（注意：1是在终端的一般提示符下进行的，而非mongo命令行内；2json可以是任何扩展名结尾的文件）
+        mongoimport --db mydb --collection student --drop --file /Users/admin/Desktop/js/test.json
