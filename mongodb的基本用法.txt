@@ -24,8 +24,19 @@
         db.student.find({"score.数学":46,"age":24 })  //两个条件的查询，且条件
         db.student.find({"score.数学":{$gt:60}})      //查找数学成绩大于60分的人，小于是用$lt
         db.student.find({$or:[{"age":34},{"age":24}]}); //或条件的查询
+        db.student.find().sort({"age":1});  //按年龄升序排序
+        db.student.find().sort({"age":1,"score.数学":-1});  //先按年龄排，再按数学成绩排，一个是升序，一个降序
 
     7、db.dropDatabase() 删除数据库
         db.dropDatabase()
     8、导入json文件（注意：1是在终端的一般提示符下进行的，而非mongo命令行内；2json可以是任何扩展名结尾的文件）
         mongoimport --db mydb --collection student --drop --file /Users/admin/Desktop/js/test.json
+    9、删除一个集合
+        db.teacher.drop()  //删除teacher集合
+    10、修改文档
+        db.student.update({"name":"小李"},{$set:{"age":18}})  //把小李的年龄改成18岁
+        db.student.update({},{$set:{"age":18}},{multi:true})  //把所有人的年龄都改成18岁
+    11、删除数据
+         db.student.remove({"score.数学":96})  //删除所有数学为96分的数据
+         db.student.remove({"score.数学":96},{justOne:true}) //只删除一条数学为96的数据
+         db.student.remove({})  //删除所有数据
