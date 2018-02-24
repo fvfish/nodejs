@@ -1,4 +1,8 @@
-一、mongodb环境变量的设置
+一、mongodb数据库的启动
+    1、安装完成后通过mongod -dbpath 启动路径   //完成数据库的启动，其中启动路径有什么数据库，启动后就能查到什么数据库
+    2、启动后配置环境变量，把mongodb的bin文件夹，配置到系统变量中去。
+    3、任意路径下可以通过mongo命令来进行管理使用数据库。
+二、mongodb环境变量的设置
     1.打开 应用程序 -> 实用工具 -> 终端； 
     2.在终端中定位到自己用户的主目录，输入： cd ~ ； 
     3.创建一个空文件，输入：touch .bash_profile ； 
@@ -7,7 +11,7 @@
     例如：export PATH=${PATH}:/Users/skythinking/MongoDB/mongodb-osx-x86_64-2.6.1/bin; 
     6，如果需要添加其他的环境变量例如JAVA_HOME，可以输入：export JAVA_HOME=/Library/Java/Home ； 
     7，source .bash_profile重启终端，测试,这个时候就可以在用户主目录使用：mongod --dbpath /Users/skythinking/MongoDB/data/db 来启动数据库了，点击终端Commond+N打开一个新的终端，使用mongo命令来连接数据库，对数据库进行操作,比如：show dbs 显示所有的集合
-二、mongodb的使用：
+三、mongodb的使用：
     1、show dbs 查看文件夹下所有数据库
     2、use 数据库名 就是使用数据库或新建数据库
         use mydb
@@ -26,6 +30,8 @@
         db.student.find({$or:[{"age":34},{"age":24}]}); //或条件的查询
         db.student.find().sort({"age":1});  //按年龄升序排序
         db.student.find().sort({"age":1,"score.数学":-1});  //先按年龄排，再按数学成绩排，一个是升序，一个降序
+        db.teacher.find().limit(4) //查出前四条记录
+        db.teacher.find().limit(4).skip(8) //查出第八条记录之后的四条记录
 
     7、db.dropDatabase() 删除数据库
         db.dropDatabase()
@@ -40,3 +46,6 @@
          db.student.remove({"score.数学":96})  //删除所有数学为96分的数据
          db.student.remove({"score.数学":96},{justOne:true}) //只删除一条数学为96的数据
          db.student.remove({})  //删除所有数据
+    12、集合的状态
+        db.student.stats() //查看集合状态
+        db.student.stats().count  //查看集合数据条数
