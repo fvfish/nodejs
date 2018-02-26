@@ -1,3 +1,5 @@
+//*bodyParser和formidable居然冲突，是我意想不到的
+
 取参方法一////////////get请求带参可以用req.query直接取得参数，就是得到对象///////////
 var express = require('express');
 var app = express();
@@ -39,3 +41,21 @@ app.listen(3000);
         form.parse(req, function(err, fields, files) {
             console.log(fields);
         });
+取参方法四/////////////////////////////////////////////////////
+    //让jquery的ajax以表单的形式提交，再让formidable去接收
+    //ajas这里就可以这么写
+    $('#tijiao').click(function () {
+        $.post('/reg',
+            $("#form1").serialize()
+        ,function (result) {
+            console.log('我已收到：'+result);
+        })
+    });
+    //html这里可以这么写,formidable还是只认name属性
+    `<form action="#" id="form1">
+    <p>用户注册</p>
+    <p>姓名：<input type="text" name='name'></p>
+    <p>密码：<input type="password" name='password'></p>
+    <p><button id="tijiao">提交</button></p>
+    </form>`
+

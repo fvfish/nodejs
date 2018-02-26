@@ -1,2 +1,4 @@
 一、路由是不区分大小写的，因为在http网址里也是不区分大小写的。
-二、
+二、关于npm
+    1、可以在工程根目录下拷贝package.json,而不用拷贝node_modules，只要在工程目录下打命令npm install就会安装所有用到的组件
+    2、在安装时npm install --save XXXXX,其中--save的意思就是把组件安装信息记录到package.json中
