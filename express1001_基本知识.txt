@@ -1,1 +1,0 @@
-一、在一个文件夹里安装express，先运行npm init生成package.jsons
