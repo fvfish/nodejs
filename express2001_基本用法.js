@@ -45,3 +45,5 @@ app.all('/', function(req, res){
     res.end('dudududududuudududu');//无论get或是post都可以
 });
 app.listen(3000);
+//////////////////////////注意小点
+1、东西不要写在res.send('ffff')之后。
