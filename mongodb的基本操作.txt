@@ -49,3 +49,7 @@
     12、集合的状态
         db.student.stats() //查看集合状态
         db.student.stats().count  //查看集合数据条数
+    13、查看检索的过程
+        db.student.find().explain()
+    14、可以要命令行下加循环语句
+        for(var i=0 ; i < 10000 ; i++) { db.student.insert({"name":"my"+i,"age":12})
